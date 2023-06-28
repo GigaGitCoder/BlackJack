@@ -1,4 +1,4 @@
 ﻿  BlackJack.cpp
-C:\Users\Admin\Desktop\BlackJack\BlackJack\BlackJack\BlackJack.cpp(50,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Users\Admin\Desktop\BlackJack\BlackJack\BlackJack\BlackJack.cpp(14): warning C4715: keyboard: значение возвращается не при всех путях выполнения
+C:\Users\Admin\Desktop\BlackJack\BlackJack\BlackJack\BlackJack.cpp(75,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Admin\Desktop\BlackJack\BlackJack\BlackJack\BlackJack.cpp(16): warning C4715: keyboard: значение возвращается не при всех путях выполнения
   BlackJack.vcxproj -> C:\Users\Admin\Desktop\BlackJack\BlackJack\x64\Debug\BlackJack.exe

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <conio.h>
+#include <fstream>
+#include <string>
 #include <Windows.h>
 #define random(a, b) a + rand() % (b + 1 - a);
 const int FPS = 10;
@@ -11,6 +13,16 @@ int keyboard() {
     {
         return _getch();
     }
+}
+
+//game
+void game(int &balance) {
+
+}
+
+//play again?
+void replay() {
+
 }
 
 //rules
@@ -36,8 +48,8 @@ int menu() {
     int z = 0;
     system("cls");
     cout << "Выберите нужный пункт нажатием соответствующей клавиши:\n\n";
-    cout << "1.) Правила игры\n2.) Рекорды\n3.) Зайти под другим именем\n4.) Начать игру\n5.) Выйти из игры\n\n";
-    while (/*z != 1 && z != 2 && z != 3 && z != 4 && z != 5*/ z < 1 || z > 5)
+    cout << "1.) Правила игры\n2.) Проверить баланс\n3.) Начать игру\n4.) Выйти из игры\n\n";
+    while (z < 1 || z > 5)
     {
         cin >> z;
     }
@@ -46,14 +58,27 @@ int menu() {
 
 int main()
 {
+    int balance;
+    string line;
+
+    ifstream in("balance.txt");
+    if (in.is_open())
+    {
+        while (getline(in, line)) {
+            balance = stoi(line);
+        }
+    }
+
+
+
     setlocale(LC_ALL, "rus");
     srand(time(NULL));
     int choice = 0;
 
     //create cards massive
-    int* cards = new int[52]{ 11, 11, 11, 11, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4,
+    char* cards = new char[52]{ 'Т', 'Т', 'Т', 'Т', 2, 2, 2, 2, 3, 3, 3, 3, 4, 4,
         4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9,
-        10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+        'В', 'В', 'В', 'В', 'Д', 'Д', 'Д', 'Д', 'К', 'К', 'К', 'К', 10, 10, 10, 10 };
 
     cout << "Добро пожаловать в игру Black Jack\nДля продолжения нажмите Enter";
 
@@ -63,24 +88,30 @@ int main()
         Sleep(1000 / FPS);
     }
     while (true) {
+        int z = 0;
         switch (menu()) {
         case 1:
             rules();
             break;
         case 2:
-            cout << 2;
+            system("cls");
+            cout << "На вашем балансе: " << balance << endl;
+            cout << "Значение баланса находится в файле balance.txt в корневой папке проекта.\nМенять только при необходимости!";
+            Sleep(7500);
             break;
         case 3:
-            cout << 3;
+            while (z != 1)
+            {
+                game(balance);
+                system("cls");
+                cout << "Хотели бы сыграть снова?\n1.) Нет / Либо введите любое другое число чтобы выйти в меню";
+                cin >> z;
+            }
             break;
         case 4:
-            cout << 4;
-            break;
-        case 5:
-            choice = 5;
+            choice = 4;
             break;
         }
-        if (choice == 5) break;
+        if (choice == 4) break;
     }
-
 }
